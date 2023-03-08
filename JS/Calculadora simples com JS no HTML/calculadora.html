@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Calculadora Simples</title>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+</head>
+<script>
+
+function calcula(){
+	var num1 = document.form1.num1.value;
+	var num2 = document.form1.num2.value;
+	var oper = document.form1.sel.value;
+	var result;
+		if (oper == 1){
+			document.form1.result.value = num1*num2;
+		}
+		if (oper == 2){
+			document.form1.result.value = num1/num2;
+		}
+		if (oper == 3){
+			document.form1.result.value = eval(num1)+eval(num2);
+		}
+		if (oper == 4){
+			document.form1.result.value = num1-num2;
+		}
+}
+
+</script>
+
+<body>
+<h1>Calculadora Simples</h1>
+<form name="form1">
+Numero1
+	<input type="text" name="num1" id="num1" class="azul"
+	onMouseOver="fancy(this.id)" onMouseOut="fancyOut(this.id)">
+Operação
+	<select name="sel" id="sel"
+	onMouseOver="fancy(this.id)" onMouseOut="fancyOut(this.id)">
+	
+	<option value="1">*</option>
+	<option value="2">/</option>
+	<option value="3">+</option>
+	<option value="4">-</option>
+	
+	</select>
+	
+Numero2
+	<input type="text" name="num2" id="num2" class="azul"
+	onMouseOver="fancy(this.id)" onMouseOut="fancyOut(this.id)">
+	
+	<input type="button" value="calcular" onClick="calcula()">
+Resultado
+	<input type="text" name="result" class="result">
+
+</form>
+</body>
+</html>

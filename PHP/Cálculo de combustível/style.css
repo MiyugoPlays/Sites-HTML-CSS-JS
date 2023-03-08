@@ -1,0 +1,20 @@
+div {
+    background-color: #DCDCDC;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 18%;
+    height: 50;    
+}
+
+input[type=number] {
+    margin: 4px 0;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+input[type=reset], [type=submit]{
+    padding: 3px 12px;
+    background-color: #1E90FF;
+    border-radius: 3px;
+    color: white;
+}

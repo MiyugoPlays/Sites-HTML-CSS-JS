@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<form name=form1><h1 align=center> Cores em Inglês </h1>
+<table border=1 align=center>
+<tr><td> Cor de fundo </td><td><input type=text name=txtfundo></td></tr>
+<tr><td> Cor do texto </td><td><input type=text name=txttexto></td></tr>
+<tr><td colspan=2 align=center><input type=button value=trocar onClick="Trocar()"></td></tr>
+</table>
+</form>
+
+<Script Language="JavaScript">
+
+function Trocar(){
+fundo=document.form1.txtfundo.value
+texto=document.form1.txttexto.value
+document.bgColor=fundo
+document.fgColor=texto
+}
+
+</Script>
+
+</body>
+</html>
