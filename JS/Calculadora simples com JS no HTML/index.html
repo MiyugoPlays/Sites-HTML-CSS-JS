@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculos</title>
+    <script>
+        function calculotriangulo(){
+            var num1 = document.form1.num1.value;
+            var num2 = document.form1.num2.value;
+            var result;
+            return result = (num1*num2)/2;
+        }
+        document.getElementById("resultado").innerHTML = result;
+    </script>
+</head>
+<body>
+    <form name="form1">
+        <h1>Área do triângulo</h1>
+        Base: <input type="number" name="num1" id="num1">
+        Altura: <input type="number" name="num2" id="num2"><br>
+        <input type="button" value="Calcular" onclick="calculotriangulo()"><br>
+        <b>Resultado:</b><p id="resultado"></p>
+    </form>
+    <hr>
+</body>
+</html>
