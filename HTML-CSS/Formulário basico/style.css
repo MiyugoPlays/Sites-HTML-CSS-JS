@@ -1,0 +1,64 @@
+.formulario{
+  background-color: #8b4513;  /*estilos basico como cor, borda arrendodada, estilode fonte e tamanho*/
+  color: white;
+  border-radius: 30px;
+  padding: 20px ;
+  text-align: center;
+  font-family: Helvetica;
+  text-shadow: 2px 2px 4px black;
+  max-width: 500px;
+
+}
+
+hr{
+  border: 3px solid black; /*definindo a cor da linha horizontal*/
+}
+
+input[type=text], input[type=email], select, textarea{  
+  width: 100%;                    /*definindo estilos das caixas de texto*/                      
+  padding: 12px 0px 12px 5px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 2px 2px 4px black;
+  background-color: #f5deb3;
+
+}
+
+.rotulo{            /*definindo posição onde os nomes(rotulos) vão estar*/
+  float: left;
+  width: 20%;
+  margin-top:22px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.cxtexto{       /*definindo a posição da caixa de texto*/
+  width: 75%;
+  float: left;
+  margin-top:12px ;
+  
+}
+
+.cxbotao{       /*definindo a posição do botão*/
+  width: 75%;
+  float: left; ;
+}
+
+.linha::after {
+  content: "";    /*definindo a organização da div linha (veja o comentario no html), para se parecer com uma tabela*/
+  display: table;
+  clear: both;
+}
+
+.botao {
+  float: left;                /*definindo o estilo do botão*/
+  background-color: black;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+textarea{         /*definindo o tamanho da caixa de mensagem*/
+  height: 100px;
+}

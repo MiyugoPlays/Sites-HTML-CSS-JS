@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="formulario">
+    <form>
+        <h1>Formulário de Contato</h1>
+        <h4>Preencha todos os campos.</h4>
+        
+        <hr/>
+
+        <div class="info">      <!--eu defini 4 divs, 1 englobando todo o form,-->          
+        <div class="linha">     <!--outro apenas os campos pra escrever, um pra cada linha de texto e cx de texto-->
+        <div class="rotulo">    <!--e outro apenas para o nome(rotulo)-->
+        <label>Nome:</label>
+        </div>
+        <div class="cxtexto">
+        <input type="text" placeholder="Nome completo">
+        </div>
+        </div>
+
+        <div class="linha">
+        <div class="rotulo">
+        <label>E-mail:</label>
+        </div>
+        <div class="cxtexto">
+        <input type="email" placeholder="E-mail Válido">
+        </div>
+        </div>
+
+        <div class="linha">
+        <div class="rotulo">
+        <label>Assunto:</label>
+        </div>
+        <div class="cxtexto">
+        <select>
+            <option>Suporte</option>
+            <option>Preciso de reembolso</option>
+            <option>Perdi o acesso</option>
+        </select>
+        </div>
+        </div>
+
+        <div class="linha">
+        <div class="rotulo">
+        <label>Mensagem:</label>
+        </div>
+        <div class="cxtexto">
+        <textarea placeholder="Sua Mensagem"></textarea>
+        </div>
+        </div>
+        
+        <br>
+        <div class="linha">
+        <div class="rotulo"></div>
+        <div class="cxbotao">       <!--aqui eu defini uma div pra o botao ficar embaixo das caixas de texto-->
+        <input type="submit" value="Enviar" class="botao">
+        </div>
+        </div>
+
+    </form>
+    </div>
+</body>
+</html>
