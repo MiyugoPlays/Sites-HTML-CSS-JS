@@ -1,0 +1,45 @@
+ <!DOCTYPE html>
+ <head>
+    <meta charset="UTF-8">
+    <title>Formulário</title>
+    <style>
+        form{
+            border-color: red;
+            border-style: double;
+            border-width: 22px;
+            width: 425px;
+            padding: 30px;
+        }
+        
+        body{
+            font-family: verdana;
+            font-size: 18pt;
+        }
+
+        input[type=number]{
+            font-size: 18pt;
+            border: 1px solid black;
+            background-color: yellow;    
+        }
+    </style>
+ </head>
+ <body>
+        <form>
+            <label name="valor1" id="valor1"><b>Valor 1:</b></label>
+            <input type="number" name="num1" id="num1"><Br>
+
+            <label name="valor2" id="valor2"><b>Valor 2:</b></label>
+            <input type="number" name="num2" id="num2"><br>
+
+            <label name="opcoes" id="opcoes"><b>Opções:</b><br></label>
+            <input type="radio" name="operacao" id="soma"><label for="soma">SOMA<br></label>
+            <input type="radio" name="operacao" id="sub"><label for="sub">SUBTRAÇÃO<br></label>
+            <input type="radio" name="operacao" id="multi"><label for="multi">MULTIPLICAÇÃO<br></label>
+            <input type="radio" name="operacao" id="divi"><label for="divi">DIVISÃO<br></label>
+
+            <label name="resultado" id="resultado"><b>Resultado:</b><br></label>
+            <input type="number" name="cxresultado" id="cxresultado"><br>
+            <input type="button" name="calcular" id="calcular" value="Calcular">
+        </form>
+ </body>
+ </html>
