@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function verifica(){
+            let num1 = document.form.num1.value
+            let num2 = document.form.num2.value
+            if (num1 == num2){
+                document.form.result.value = "Os números são iguais"
+            }
+            else if(num1>num2){
+                document.form.result.value = num1 + " é maior que " + num2
+            }
+            else {
+                document.form.result.value = num2 + " é maior que " + num1
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Verificar se o número é maior ou igual</h1>
+        Primeiro número: <input type="number" name="num1"> <br>
+        Segundo número: <input type="number" name="num2"> <br>
+        <input type="button" value="Verificar" onclick="verifica()"> <br><br>
+        <input type="text" name="result" disabled>
+    </form>
+</body>
+</html>

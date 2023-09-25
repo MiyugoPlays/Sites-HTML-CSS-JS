@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function verifica(){
+            let num1 = (document.form.num1.value);
+            let numint = parseFloat(num1); //colocando em valor em float, mas caso o valor seja inteiro, ele fica inteiro
+            let calc = num1 % 2;
+            let int = Number.isInteger(numint); //mostra em booleano se o valor é inteiro ou não
+            if (int == false){
+                document.form.resultado.value = "O número não é inteiro";
+            }
+            else if(calc != 0) {
+                document.form.resultado.value = "O número é Ímpar";
+            }
+            else {
+                document.form.resultado.value = "O número é par";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Verificador de número ímpar ou par</h1>
+        <input type="number" name="num1"> <br>
+        <input type="button" value="Verificar" onclick="verifica()"> <br> <br>
+        <input type="text"  name="resultado" disabled> <br>  
+</body>
+</html>

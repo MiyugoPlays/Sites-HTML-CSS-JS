@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function calcarea(){
+            let base = document.form.num1.value;
+            let altura = document.form.num2.value;
+            resultado = base * altura;
+            document.form.result.value = resultado
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Área do quadrado</h1>
+        Base: <input type="number" name="num1"> <br>
+        Altura: <input type="number" name="num2"> <br>
+        <input type="button" value="Calcular" onclick="calcarea()"> <br><br>
+        <input type="text" id="result" name="result" disabled>
+    </form>
+</body>
+</html>

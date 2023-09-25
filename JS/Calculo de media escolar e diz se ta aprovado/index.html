@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function calcnota(){
+            let nota1 = (document.form.num1.value)
+            let notareal1 = parseFloat(nota1)
+            let nota2 = (document.form.num2.value)
+            let notareal2 = parseFloat(nota2)
+            let nota3 = (document.form.num3.value)
+            let notareal3 = parseFloat(nota3)
+            let media = (notareal1 + notareal2 + notareal3)/3
+            let mediaarrend = media.toFixed(1)
+            media = parseFloat(mediaarrend)
+            if(media >= 6) {
+                document.form.result.value = "APROVADO"
+            }
+            else if (media >= 3 && media < 6){
+                document.form.result.value = "EXAME"
+            }
+            else{
+                document.form.result.value = "REPROVADO"
+            }
+            console.log(media)
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Média Escolar</h1>
+        Nota 1: <input type="number" name="num1"> <br>
+        Nota 2: <input type="number" name="num2"> <br>
+        Nota 3: <input type="number" name="num3"> <br>
+        <input type="button" value="Calcular" onclick="calcnota()"> <br><br>
+        <input type="text" id="result" name="result" disabled>
+    </form>
+</body>
+</html>
