@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function calcula(){
+        let pag = document.form.pagamento.value;
+        let valor = document.form.valor1.value;
+        let avista = valor * 0.9;
+        let cartao = valor * 0.95;
+        let parcelado = valor * 1.1;
+        
+        if (pag == 1){
+            document.form.resultado2.value = avista;
+        }
+        else if(pag == 2){
+            document.form.resultado2.value = cartao;
+        }
+        else{
+            document.form.resultado2.value = parcelado;
+        }
+        document.form.resultado.value = valor
+        }
+    </script>
+    </head>
+<body>
+    <form name="form">
+        Valor do produto: <input type="number" name="valor1"> <br>
+        <input type="radio" id="vista" name="pagamento" value="1">
+        <label for="vista">À vista</label> <br>
+
+        <input type="radio" id="cartao" name="pagamento" value="2">
+        <label for="cartao">Cartão</label> <br>
+
+        <input type="radio" id="parcelado" name="pagamento" value="3">
+        <label for="parcelado">Parcelado</label> <br>
+
+        <input type="button" name="calc" value="calcular" onclick="calcula()"><br>
+
+        Valor real: <input type="number" disabled name="resultado"> <br>
+        Valor a ser pago: <input type="number" disabled name="resultado2">
+
+    </form>
+</body>
+</html>
