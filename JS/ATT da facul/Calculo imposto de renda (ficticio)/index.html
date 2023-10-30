@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script>
+        function calculo(){
+            let num = document.form.num.value
+            if(num <= 1434){        
+                alert("Isento!")
+            }
+            if(num > 1434 && num < 2150 ){   
+                let result = num * 0.075
+                resultform = result.toFixed(2)
+                document.form.result.value = resultform
+            }
+            if(num > 2150 && num < 2866 ){   
+                let result = num * 0.15
+                resultform = result.toFixed(2)
+                document.form.result.value = resultform
+            }
+            if(num > 2866 && num < 3582 ){   
+                let result = num * 0.225
+                resultform = result.toFixed(2)
+                document.form.result.value = resultform
+            }
+            if(num > 3582){   
+                let result = num * 0.275
+                resultform = result.toFixed(2)
+                document.form.result.value = resultform
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Calculo de Imposto de Renda</h1>
-    <form>
+    <form name="form">
         Registro: <input type="text"><br>
         Nome: <input type="text"><br>
         Salário: <input type="number" name="num"><br><br>
-        <input type="button" value="Calcular IR"><br><br>
+        <input type="button" value="Calcular IR" onclick="calculo()"><br><br>
         Imposto de Renda <input type="text" disabled name="result"> 
     </form>
 </body>

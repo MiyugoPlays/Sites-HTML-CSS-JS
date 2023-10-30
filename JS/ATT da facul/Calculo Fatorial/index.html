@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calcula(){
+            let num = document.form.numero.value
+            let numformatado = parseFloat(num)   //passando o numero para inteiro
+            let bool = Number.isInteger(numformatado)  //verificando se o numero é inteiro
+            if (bool == false|| num < 0) {
+                alert("Não possui um fatorial desse número!!");   //se o numero não for inteiro e menor que 0
+            }
+            console.log(bool)
+            let resultado = num
+            let primeiromultiplicador = num - 1
+            for (let i = primeiromultiplicador; i>1; i--){   //fatorial. vai multiplicando e diminuindo ex 5x4,20x3...
+                resultado *= i
+            }
+            document.form.result.value = resultado
+            if (num == 0 || num == 1){              //1! = 1 e 0! = 1
+                document.form.result.value = 1
+            }
+        }   
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Calculo Fatorial</h1>
+        <input type="number" name="numero" placeholder="Digite um número"><br>
+        <input type="button" name="calc" value="Calcular" onclick="calcula()"><br>
+        <input type="number" name="result" disabled>
+    </form>
+</body>
+</html>

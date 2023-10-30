@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .resultado {
+            font-family: arial;
+            color: blue;
+            font-size: 24pt;
+        }
+    </style>
+    <script>
+        function calcula(){
+            let altura = document.form.altura.value
+            let peso = document.form.peso.value
+            let sexo = document.form.sexo.value
+            let imc = peso / altura**2
+            let resultado = imc.toFixed(1)
+            document.getElementById("result").innerHTML = "IMC: " + resultado
+
+                //calculo imc feminino
+
+            if (sexo == 2 && resultado < 19.1 ) {
+                document.getElementById("result2").innerHTML = "Abaixo do peso"
+            }
+            if (sexo == 2 && resultado > 19.1 && resultado < 25.8 ) {
+                document.getElementById("result2").innerHTML = "No peso normal"
+            }
+            if (sexo == 2 && resultado > 25.8 && resultado < 27.3 ) {
+                document.getElementById("result2").innerHTML = "Marginalmente acima do peso"
+            }
+            if (sexo == 2 && resultado > 27.3 && resultado < 32.3 ) {
+                document.getElementById("result2").innerHTML = "Acima do peso ideal"
+            }
+            if (sexo == 2 && resultado > 32.3) {
+                document.getElementById("result2").innerHTML = "Obeso"
+            }
+
+                //calculo imc masculino
+
+            if (sexo == 1 && resultado < 20.7 ) {
+                document.getElementById("result2").innerHTML = "Abaixo do peso"
+            }
+            if (sexo == 1 && resultado > 20.7 && resultado < 26.4 ) {
+                document.getElementById("result2").innerHTML = "No peso normal"
+            }
+            if (sexo == 1 && resultado > 26.4 && resultado < 27.8 ) {
+                document.getElementById("result2").innerHTML = "Marginalmente acima do peso"
+            }
+            if (sexo == 1 && resultado > 27.8 && resultado < 31.1 ) {
+                document.getElementById("result2").innerHTML = "Acima do peso ideal"
+            }
+            if (sexo == 1 && resultado > 31.1) {
+                document.getElementById("result2").innerHTML = "Obeso"
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Calculadora de IMC</h1>
+        Digite a sua altura em metros: <input type="number" name="altura"> <br>
+        Digite o seu peso em Kg: <input type="number" name="peso"> <Br>
+        Sexo: <select name="sexo">
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+        </select> <br>
+        <input type="button" value="Calcular" onclick="calcula()">
+        <p id="result" class="resultado"></p>
+        <p id="result2" class="resultado"></p>
+    </form>
+</body>
+</html>

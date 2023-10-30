@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function somador(){
+            let num = document.form.num.value;
+            let numformatado = parseInt(num); //passando o numero para inteiro
+            let resultado = 1;
+            if(numformatado >= 0) {
+            for (let i = 2; i<=numformatado; i++){  //aqui é somatoria e vai adicionando ex: 1+2, 3+3,...
+                resultado += i;
+            }
+            }
+            if(numformatado < 0){
+                alert("O número não é positivo")
+            }
+            document.form.resultado.value = resultado
+            if(numformatado == 1){
+                document.form.resultado.value = 2
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1> Somador entre 1 e N</h1>
+        <input type="number" name="num" placeholder="Digite um Número"> <br>
+        <input type="button" value="Calcular" onclick="somador()"><br><br>
+        <input type="number" name="resultado" disabled>
+    </form>
+</body>
+</html>

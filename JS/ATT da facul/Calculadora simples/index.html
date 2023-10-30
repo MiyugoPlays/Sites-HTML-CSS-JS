@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calcsoma(){
+        let num1 = parseFloat(document.form.num1.value);
+        let num2 = parseFloat(document.form.num2.value);
+        document.form.result.value = num1 + num2;
+        }
+        function calcsub(){
+        let num1 = parseFloat(document.form.num1.value);
+        let num2 = parseFloat(document.form.num2.value);
+        document.form.result.value = num1 - num2;
+        }
+        function calcmult(){
+        let num1 = parseFloat(document.form.num1.value);
+        let num2 = parseFloat(document.form.num2.value);
+        document.form.result.value = num1 * num2;
+        }
+        function calcdivi(){
+        let num1 = parseFloat(document.form.num1.value);
+        let num2 = parseFloat(document.form.num2.value);
+        let calc = num1 / num2;
+        let calcformatado = calc.toFixed (2);
+        document.form.result.value = calcformatado;
+        }
+    </script>
+</head>
+<body>
+    <form name="form">
+        <h1>Calculadora</h1>
+        <label>Primeiro Número:</label> <br>
+        <input type="number" name="num1"> <br>
+        <label>Segundo Número:</label><br>
+        <input type="number" name="num2"> <br>
+        <input type="button" name="oper" value="+" onclick="calcsoma()">
+        <input type="button" name="oper" value="-" onclick="calcsub()">
+        <input type="button" name="oper" value="*" onclick="calcmult()">
+        <input type="button" name="oper" value="/" onclick="calcdivi()"><Br><Br>
+        <label>Resultado:</label>
+        <input type="number" name="result" disabled>
+    </form>
+</body>
+</html>

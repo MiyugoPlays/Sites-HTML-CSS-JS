@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <form name="form">
+    <h1>NUMERO ALEATORIO DE 0 a 100</h1>
+    <label>Digite o número</label>
+    <input type="number" name="valor">
+    <input type="button" value="Verificar" id="verifica">
+    <p id="result"></p>
+    <div>Tentativas:<span id="tentativa"></span></div>
+    </form>
+
+    <script>
+        alert("Tente acertar o número entre 0 e 100")
+        var num = Math.round(Math.random()*100)
+        var tentativa = 0
+        document.querySelector("#verifica").onclick = function verifica(){
+            let valor = document.form.valor.value
+            if(valor > num){
+                document.getElementById("result").innerHTML = "O número é <b>MAIOR</b> que o aleatório";
+                tentativa = tentativa + 1;
+                document.getElementById("tentativa").innerHTML = tentativa;
+            }
+            if(valor < num){
+                document.getElementById("result").innerHTML = "O número é <b>MENOR</b> que o aleatório";
+                tentativa = tentativa + 1;
+                document.getElementById("tentativa").innerHTML = tentativa;
+            }
+            if(valor == num){
+                tentativa = tentativa + 1;
+                document.getElementById("tentativa").innerHTML = tentativa;
+                alert("Parabéns, você acertou o número")
+                if(confirm("Clique em OK se deseja recomeçar") == true){
+                    location.reload()
+                }
+            }
+        }
+    </script>
+</body>
+</html>

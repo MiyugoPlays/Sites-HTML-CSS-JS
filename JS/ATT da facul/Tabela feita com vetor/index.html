@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            color:  #CCCCCC;
+            background-color: #CCCCCC;
+        }
+        th{
+            font-size: 15px;
+            font-weight: 700;
+            background-color: #000033;
+
+        }
+        td{
+            font-size: 14px;
+            background-color: #000066;
+        }
+    </style>
+</head>
+<body>
+    <div id="tabela"></div>
+    <script>
+        let nomes = [];
+        let nome;
+
+        do{
+            nome = prompt("Digite um Nome:");
+            if (nome){
+                cadastrarProduto(nome);
+            }
+        }while (nome != null) 
+
+        function cadastrarProduto(nome){
+            nomes.push(nome);
+        }
+        
+        let tabela = "<table>"
+        tabela += "<tr>";
+        tabela += "<th>";
+        tabela += "<div class='indice'><p>Indice</p></div>";
+        tabela += "</th>";
+        tabela += "<th>";
+        tabela += "<div class='nome'><p>Nome</p></div>";
+        tabela += "</th>";
+        tabela += "</tr>";
+
+        for(let indi = 0;indi < nomes.length;indi++){
+            tabela += "<tr>";
+            tabela += "<td>" + (indi+1) + "</td>";
+            tabela += "<td>" + nomes[indi] + "</td>";
+            tabela += "</tr>";
+        }
+        tabela += "</table>";
+        document.getElementById("tabela").innerHTML = tabela;
+    </script>
+</body>
+</html>
