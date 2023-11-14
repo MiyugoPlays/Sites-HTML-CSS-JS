@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+           background-color: lawngreen;
+           padding: 5px 20px 3px 20px;
+           border-top-right-radius: 10px ;
+           border-top-left-radius: 10px ;
+           box-shadow: 0px 0px 7px black inset  ;
+        }
+        #divid{
+            height: 320px;
+            width: 420px;
+        }
+        nav{
+            padding: 0px 0px 5px 0px;
+        }
+        a{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a id="link" onclick="iniciacronometro()"><span>Cronômetro</span></a>
+        <a onclick="slide()"><span>Slide Show</span></a>
+        <a onclick="tabuada()"><span>Tabuada</span></a>
+    </nav>
+    <div id="divid"></div>
+    <script>
+        let contador = 0;
+        let cronometro;
+        let numeroimg = 0;
+        let imagens = ["img1.jpeg", "img2.jpg", "img3.jpg","img4.jpg","img5.jpg"];
+
+        function iniciacronometro(){
+            document.getElementById("link").removeAttribute("onclick");
+            document.getElementById("divid").textContent = ""
+            cronometro = setInterval(function () {
+            contador++;
+            document.getElementById("divid").textContent = contador;
+            }, 1000);
+            document.querySelector("#divid").style.cssText= "background-color: #ffdb58";
+        }
+
+        function pararcontar(){
+            clearInterval(cronometro)   
+        }
+
+        function zerarconometro(){
+            contador = 0;
+            document.getElementById("divid").textContent = contador;
+        }
+
+        function mostrarimg(n){
+            let imagemelemento = document.getElementById("imagem");
+            if (imagemelemento) {
+                imagemelemento.src = imagens[n];
+            }
+        }
+        
+        function anterior(){
+            numeroimg--
+            if (numeroimg < 0)  {
+                numeroimg = imagens.length - 1
+            }
+            mostrarimg(numeroimg)
+
+        }
+        function proximo(){
+            numeroimg++
+            if (numeroimg >= imagens.length)  {
+                numeroimg = 0
+            }
+            mostrarimg(numeroimg)
+        }
+
+        function slide(){
+            zerarconometro()
+            pararcontar()
+            document.querySelector("#divid").style.cssText= "background-color: lightgreen";
+            let slide = '<div class="img"><img id="imagem" height="100px" width="100px"></div>'
+            slide += '<pre><a onclick="anterior()">Anterior   </a>'
+            slide += "<a onclick='proximo()'>Próximo</a></pre>"
+            document.getElementById("divid").innerHTML = slide
+            mostrarimg(numeroimg)
+            document.getElementById("link").setAttribute("onclick", "iniciacronometro()");
+        }
+
+        function tabuada(){
+            zerarconometro()
+            pararcontar()
+            document.querySelector("#divid").style.cssText= "background-color: lightblue";
+            let tabuada = "<div id='texto'>Digite o número da tabuada que deseja calcular:<br><br>"
+            tabuada += "<form name='form'>"
+            tabuada += "<input type='number' name='num'> <input type='button' value='Calcular' onclick='calcular()'>"
+            tabuada += "</form>"
+            tabuada += "<p id='resp'></p></div>"
+            document.getElementById("divid").innerHTML = tabuada
+            document.querySelector("#texto").style.cssText= "color: white";
+        }   
+        function calcular(){
+            let num = parseFloat(document.form.num.value)
+            let resposta
+            if(isNaN(num) || !Number.isInteger(num) || num <= 0){
+                resposta = "Digite um número válido!"
+                document.getElementById("resp").innerHTML = resposta
+            }
+            else{
+                resposta = "Tabuada do " + num + ":<br>";
+                for (let i = 0;i <= 10;i++){    
+                    resposta += num + " x " + i + " = " + (num*i) + "<br>" 
+                }
+            }
+            document.getElementById("resp").innerHTML = resposta  
+        }
+    </script>
+</body>
+</html>

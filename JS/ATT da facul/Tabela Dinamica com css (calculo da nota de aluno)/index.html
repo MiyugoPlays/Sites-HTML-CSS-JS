@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Alunos</title>
+    <style>
+        #campo {
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        #Aprovado {
+            color: blue;
+        }
+        #Reprovado {
+            color: red;
+        }
+        #AvaliaçãoFinal {
+            color: orange;
+        }
+        td, th {
+            text-align: center;
+            padding: 10px;
+        }         
+    </style>
+</head>
+<body>
+    <form name="form">
+        <label>Nome: </label><input type="text" name="nome" id="campo"><br>
+        <label>RGM: </label><input type="text" name="rgm" id="campo" oninput="this.value = this.value.replace(/\D/g, '');"><br>
+        <label>Nota parcial: </label><input type="number" name="notaparcial" id="campo" placeholder="máximo 2 pontos"><br>
+        <label>Nota exercício: </label><input type="number" name="notaex" id="campo" placeholder="máximo 1 ponto"><br>
+        <label>Nota projeto: </label><input type="number" name="notaprojeto" id="campo" placeholder="máximo 2 pontos"><br>
+        <label>Nota regimental: </label><input type="number" name="notaregimental" id="campo" placeholder="máximo 5 pontos"><br>
+        <input type="button" value="Cadastrar" id="cadastrarbotao" onclick="cadastrar()">
+        <input type="button" value="Mostrar" id="mostrarbotao" onclick="mostrar()" disabled>
+    </form>
+    <br>
+    <div id="tabela"></div>
+
+    <script>
+        let notafinal;
+        let tabela;
+        let alunos = [];
+
+        function cadastrar() {
+            let nome = document.form.nome.value;
+            let rgm = document.form.rgm.value;
+            let notaparcial = document.form.notaparcial.value;
+            let notaex = document.form.notaex.value;
+            let notaprojeto = document.form.notaprojeto.value;
+            let notaregimental = document.form.notaregimental.value;
+
+            if (nome && rgm && notaparcial && notaex && notaprojeto && notaregimental) {
+                let aluno = {"nome": nome, "rgm": rgm, "notaparcial": notaparcial,
+                    "notaex": notaex, "notaprojeto": notaprojeto, "notaregimental": notaregimental};
+                
+                alunos.push(aluno);
+                
+                document.form.nome.value = '';
+                document.form.rgm.value = '';
+                document.form.notaparcial.value = '';
+                document.form.notaex.value = '';
+                document.form.notaprojeto.value = '';
+                document.form.notaregimental.value = '';
+
+                document.getElementById("mostrarbotao").disabled = false;
+            } else {
+                alert("Preencha todos os campos!");
+            }
+        }
+
+        function mostrar() {
+            tabela = `<table>
+                <tr>
+                    <th>Nome</th>
+                    <th>RGM</th>
+                    <th>Nota parcial</th>
+                    <th>Nota exercício</th>
+                    <th>Nota projeto</th>
+                    <th>Nota regimental</th>
+                    <th>Nota final</th>
+                    <th>Status</th>
+                </tr>`;
+
+            alunos.forEach(alunox => {
+                notafinal = parseFloat(alunox.notaparcial) + parseFloat(alunox.notaex) +
+                            parseFloat(alunox.notaprojeto) + parseFloat(alunox.notaregimental);
+                let statusaluno = situacaoaluno(notafinal);
+                tabela +=
+                `<tr>
+                    <td>${alunox.nome}</td>
+                    <td>${alunox.rgm}</td>
+                    <td>${alunox.notaparcial}</td>
+                    <td>${alunox.notaex}</td>
+                    <td>${alunox.notaprojeto}</td>
+                    <td>${alunox.notaregimental}</td>
+                    <td>${notafinal}</td>
+                    <td id="${statusaluno}"><b>${statusaluno}</b></td>
+                </tr>`;
+            });
+
+            tabela += `</table>`;
+            document.getElementById("tabela").innerHTML = tabela;
+            document.getElementById("mostrarbotao").disabled = true;
+        }
+
+        function situacaoaluno(notafinal) {
+            if (notafinal === 0) {
+                return "Reprovado";
+            } else if (notafinal < 6) {
+                return "AvaliaçãoFinal";
+            } else {
+                return "Aprovado";
+            }
+        }
+    </script>
+</body>
+</html>

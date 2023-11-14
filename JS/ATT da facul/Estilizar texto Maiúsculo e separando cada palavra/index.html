@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form">
+        <input type="text" name="texto"><br>
+        <input type="button" name="maiu" value="Maiúscula" onclick="maiusculo()">
+        <input type="button" name="separa" value="Separar" onclick="separar()">
+    </form>
+    <div id="iddiv"></div>
+    <script>
+        function maiusculo(){
+            let texto = document.form.texto.value
+            document.querySelector("#iddiv").innerHTML = texto.toUpperCase();
+        }
+        function separar(){
+            let texto = document.form.texto.value
+            let palavras = texto.split(' ')
+            let palavraseparada = palavras.join('<br>');
+            document.querySelector("#iddiv").innerHTML = palavraseparada;
+        }
+    </script>
+</body>
+</html>

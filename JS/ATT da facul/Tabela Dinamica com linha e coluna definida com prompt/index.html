@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table tr td:nth-child(even) {
+            background-color: greenyellow;
+        }
+
+        table tr td:nth-child(odd) {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="tabela"></div>
+    <script>
+        let linha = prompt("Digite o Número de linhas:")
+        let coluna = prompt("Digite o Número de colunas:")
+        let tabela = "<table>"
+
+        for(let cont = 1;cont <= linha;cont++){
+            tabela += "<tr>"
+            for(let cont2 = 1;cont2 <= coluna;cont2++){
+                tabela += "<td>" + cont + "," + cont2 +"</td>"
+            }
+            tabela += "</tr>"
+        }
+        tabela += "</table>"
+        document.getElementById("tabela").innerHTML = tabela;
+    </script>
+</body>
+</html>

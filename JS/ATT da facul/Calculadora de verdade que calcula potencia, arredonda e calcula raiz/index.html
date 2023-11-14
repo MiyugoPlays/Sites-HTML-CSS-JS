@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form">
+        <div>
+            <input type="text" name="res" id="res" disabled> 
+        </div>
+        <div>
+            <input type="button" value="x^y" onclick="potencia()">
+            <input type="button" value="≈" onclick="arredonda()">
+            <input type="button" value="√" onclick="raiz()">
+            <input type="button" value="÷" onclick="addoperador('/')">
+        </div>
+        <div>
+            <input type="button" value="7" onclick="addnumero(7)">
+            <input type="button" value="8" onclick="addnumero(8)">
+            <input type="button" value="9" onclick="addnumero(9)">
+            <input type="button" value="x" onclick="addoperador('*')">
+        </div>
+        <div>
+            <input type="button" value="4" onclick="addnumero(4)">
+            <input type="button" value="5" onclick="addnumero(5)">
+            <input type="button" value="6" onclick="addnumero(6)">
+            <input type="button" value="-" onclick="addoperador('-')">
+        </div>
+        <div>
+            <input type="button" value="1" onclick="addnumero(1)">
+            <input type="button" value="2" onclick="addnumero(2)">
+            <input type="button" value="3" onclick="addnumero(3)">
+            <input type="button" value="+" onclick="addoperador('+')">
+        </div>
+        <div>
+            <input type="button" value="C" onclick="limpar()">
+            <input type="button" value="0" onclick="addnumero(0)">
+            <input type="button" value="." onclick="addponto()">
+            <input type="button" value="=" onclick="calcula()">
+        </div>
+    </form>
+    <script>
+        let res = document.form.res;   
+        function addnumero(num){
+            res.value += num;
+        }
+        function addoperador(operador){
+            res.value += operador;
+        }
+        function limpar(){
+            res.value = '';
+        }
+        function addponto(){
+            if (res.value.indexOf('.') === -1) {
+            res.value += '.';
+            }
+        }
+        function calcula(){
+            try {
+            res.value = eval(res.value);
+            } 
+            catch (error) {
+            res.value = 'Erro';
+            }
+        }
+        function potencia(){
+            x = prompt("Digite o número da base:");
+            y = prompt("Digite o número do expoente:");
+            res.value = Math.pow(x,y);
+        }
+        function arredonda(){
+            x = prompt("Digite o número a ser arredondado:");
+            res.value = Math.round(x);
+        }
+        function raiz(){
+            x = prompt("Digite um número para saber a raiz quadrada:");
+            res.value = Math.sqrt(x);
+        }
+    </script>
+</body>
+</html>
