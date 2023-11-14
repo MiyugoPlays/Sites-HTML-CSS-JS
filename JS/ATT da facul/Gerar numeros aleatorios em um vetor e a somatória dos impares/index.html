@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="mostrar()">Mostrar</button>
+    <div id="divid"></div>
+    <script>
+        function mostrar(){
+            let campo = document.querySelector("#divid")
+            campo.innerHTML = ''
+            let numerosAleatorios = [];
+
+            for (let i = 0; i < 20; i++) {
+                let numeroAleatorio = Math.floor(Math.random() * 500); 
+                numerosAleatorios.push(numeroAleatorio);
+            }
+
+            campo.innerHTML += "<h3>Todos os dados do vetor</h3>"
+            for (let numero of numerosAleatorios){
+                campo.innerHTML += numero + "<br>"
+            }
+
+            let soma = 0
+            for (let numero of numerosAleatorios){
+                if(numero % 2 !== 0){
+                    soma += numero
+                }
+            }
+            campo.innerHTML += "<h3>A somatória dos números ímpares</h3>" + soma
+        }
+    </script>
+</body>
+</html>
