@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrações de Trânsito</title>
+    <style>
+        #placa {
+            border: 3px solid lightblue;
+            border-radius: 30px;
+            width: auto;
+            display: table;
+            clear: both;
+            padding: 0px 16px 8px 16px;
+        }
+        #nome {
+            width: auto;
+            text-align: center;
+        }
+        #placanumero {
+            width: auto;
+            text-align: center;
+            font-size: 75px;
+        }
+        .fundo-cinza {
+            background-color: lightgray;
+            padding: 0px 30px 0px 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="divgeral"></div>
+    <script>
+        fetch('detran.json') 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Não foi possível carregar o arquivo detran.js');
+                }
+                return response.json();
+            })
+            .then(data => {
+                let placas = '';
+                data.forEach(plaquinhas => {
+                    placas += `<div id="placa">
+                        <div id="nome">
+                            <span class="fundo-cinza">${plaquinhas.estado}- ${plaquinhas.cidade}</span>
+                        </div>
+                        <div id="placanumero">
+                            ${plaquinhas.placa}
+                        </div>
+                    </div>
+                    <br>`;
+                });
+
+                document.getElementById("divgeral").innerHTML = placas;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+</body>
+</html>

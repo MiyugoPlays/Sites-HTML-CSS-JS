@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 25px;
+        }
+        #tabelamasculino{
+            height: auto;
+            width: 50%;
+            border: 3px solid black;
+            border-radius: 30px;
+            background-color: lightgreen;
+            
+        }
+        #tabelafeminino{
+            height: auto;
+            width: 50%;
+            border: 3px solid black;
+            border-radius: 30px;
+            background-color: orange;
+            
+        }
+        #linha::after {
+            content: "";    
+            display: table;
+            clear: both;
+        }
+        .linhaborda{
+            border-top: 3px solid black;
+        }
+        #coluna1{            
+            float: left;
+            width: 40%;
+            text-align: center;
+        }
+        #coluna2{       
+            width: 37%;
+            float: left;
+            text-align: center;
+        }
+        #coluna2_1{       
+            width: 50%;
+            float: left;
+            
+        }
+        #titulo{
+            width: 100%;
+            text-align: center;
+            border-bottom: 3px solid black;
+        }
+        .cargo{
+            border-right: 3px solid black;
+            padding: 10px 25px 10px 25px;
+        }
+        .salario{
+            padding: 10px 25px 10px 25px;
+            text-align: center;
+        }
+        .fundobranco{
+            background-color: white
+        }
+    </style>
+</head>
+<body>
+    <button onclick="mostrartudo()">Parte 1</button><br>
+    <button onclick="mostrarinfo()">Parte 2</button>
+    <div id="divgeral">
+    </div>
+<script src="pessoas.js"></script> 
+<script>
+    let tabelaHTML = '';
+function mostrartudo(){
+pessoas.forEach(pessoa => {
+    let genero = pessoa.genero === 'Feminino' ? 'tabelafeminino' : 'tabelamasculino';
+    tabelaHTML += `
+        <div id="${genero}">
+            <div id="linha" class="cor">
+                <div id="titulo">
+                    <b>${pessoa.nome}</b>
+                </div>
+            </div>
+            <div id="linha" class="fundobranco">
+                <div id="coluna1">
+                    <img src="${pessoa.foto}" width="170px" height="170px">
+                </div>
+                <div id="coluna2_1">
+                    <b>Idade:</b> ${pessoa.idade}<br>
+                    <b>Altura:</b> ${pessoa.altura}<br>
+                    <b>Peso:</b> ${pessoa.peso}<br>
+                    <b>Gênero:</b> ${pessoa.genero}<br>
+                </div>
+            </div>
+            <div id="linha" class="linhaborda">
+                <div id="coluna1" class="cargo">
+                    <b>${pessoa.profissao}</b>
+                </div>
+                <div id="coluna2" class="salario">
+                    <b>R$ ${pessoa.salario}</b>
+                </div>
+            </div>
+        </div>
+        <br>
+    `;
+});
+
+document.getElementById("divgeral").innerHTML = tabelaHTML;
+
+}
+
+function mostrarinfo(){
+    
+        let somaIdades = 0;
+        for (let pessoa of pessoas) {
+            somaIdades += pessoa.idade;
+        }
+
+        let mediaIdades = somaIdades / pessoas.length;
+        let mediaformatada = Math.round(mediaIdades)
+        let info = "<h1>Média das idades</h1> A média das idades das pessoas é: " + mediaformatada + "<br>"
+    
+        let pessoaMaisVelha = pessoas[0];  
+
+        for (let pessoa of pessoas) {
+            if (pessoa.idade > pessoaMaisVelha.idade) {
+                pessoaMaisVelha = pessoa;  
+            }
+        }
+        let genero = pessoaMaisVelha.genero === 'Feminino' ? 'tabelafeminino' : 'tabelamasculino';
+        info += `
+        <h1>Pessoa mais velha</h1>
+        <div id="${genero}">
+            <div id="linha" class="cor">
+                <div id="titulo">
+                    <b>${pessoaMaisVelha.nome}</b>
+                </div>
+            </div>
+            <div id="linha" class="fundobranco">
+                <div id="coluna1">
+                    <img src="${pessoaMaisVelha.foto}" width="170px" height="170px">
+                </div>
+                <div id="coluna2_1">
+                    <b>Idade:</b> ${pessoaMaisVelha.idade}<br>
+                    <b>Altura:</b> ${pessoaMaisVelha.altura}<br>
+                    <b>Peso:</b> ${pessoaMaisVelha.peso}<br>
+                    <b>Gênero:</b> ${pessoaMaisVelha.genero}<br>
+                </div>
+            </div>
+            <div id="linha" class="linhaborda">
+                <div id="coluna1" class="cargo">
+                    <b>${pessoaMaisVelha.profissao}</b>
+                </div>
+                <div id="coluna2" class="salario">
+                    <b>R$ ${pessoaMaisVelha.salario}</b>
+                </div>
+            </div>
+        </div>
+        <br>
+        `
+
+        let pessoaMaiorSalario = pessoas[0];  
+
+    for (let pessoa of pessoas) {
+        if (pessoa.salario > pessoaMaiorSalario.salario) {
+            pessoaMaiorSalario = pessoa;  
+        }
+    }
+
+    info += `
+        <h1>Pessoa com maior salário</h1>
+        <div id="${genero}">
+            <div id="linha" class="cor">
+                <div id="titulo">
+                    <b>${pessoaMaiorSalario.nome}</b>
+                </div>
+            </div>
+            <div id="linha" class="fundobranco">
+                <div id="coluna1">
+                    <img src="${pessoaMaiorSalario.foto}" width="170px" height="170px">
+                </div>
+                <div id="coluna2_1">
+                    <b>Idade:</b> ${pessoaMaiorSalario.idade}<br>
+                    <b>Altura:</b> ${pessoaMaiorSalario.altura}<br>
+                    <b>Peso:</b> ${pessoaMaiorSalario.peso}<br>
+                    <b>Gênero:</b> ${pessoaMaiorSalario.genero}<br>
+                </div>
+            </div>
+            <div id="linha" class="linhaborda">
+                <div id="coluna1" class="cargo">
+                    <b>${pessoaMaiorSalario.profissao}</b>
+                </div>
+                <div id="coluna2" class="salario">
+                    <b>R$ ${pessoaMaiorSalario.salario}</b>
+                </div>
+            </div>
+        </div>
+        <br>
+        `
+
+        document.getElementById("divgeral").innerHTML = info;   
+}
+
+</script>
+</body>
+</html>

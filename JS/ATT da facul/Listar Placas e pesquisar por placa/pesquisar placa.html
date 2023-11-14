@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Placas</title>
+    <style>
+        #tabelona{
+            content: "";  
+            display: table;
+            clear: both;
+            border: 1px solid black;
+            width: 400px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+        .Leve{
+            background-color: #d1e7f6;
+        }
+        .MÃ©dia{
+            background-color: #ffcc99;
+        }
+        .Grave{
+            background-color: #ff7c80;
+        }
+        .GravÃ­ssima{
+            background-color: #7f7f7f;
+        }
+        #coluna1{            
+            float: left;
+            width: 40%;
+            text-align: center;
+        }
+        #coluna2{       
+            width: 60%;
+            float: left;
+            text-align: left;
+        }
+        #titulo{
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form name="form">
+        Placa: <input type="text" id="placax">
+        <input type="button" value="Pesquisar" onclick="pesquisar()">
+    </form>
+    <br>
+    <div id="tabela"></div>
+    <script>
+        let dadosdapessoa = [];
+        fetch('detran.json') 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Não foi possível carregar o arquivo detran.js');
+                }
+                return response.json();
+            })
+            .then(data => {
+                dadosdapessoa = data;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        function pesquisar() {
+            let placanumero = document.getElementById('placax').value;
+            let tabela = document.getElementById('tabela');
+            tabela.innerHTML = '';
+
+            let resultados = dadosdapessoa.filter(plaquinhas => plaquinhas.placa === placanumero);
+
+            if (resultados.length === 0) {
+                tabela.innerHTML = 'Nenhum resultado encontrado.';
+            } else {
+                let pessoa = resultados[0];
+
+                tabela.innerHTML = `
+                <div id="tabelona" class="${pessoa.gravidade}">
+        <div id="linha">
+            <div id="titulo">
+                <span><b>Placa:</b> ${pessoa.placa}</span>
+            </div>
+        </div>
+        <div id="linha">
+            <div id="coluna1">
+                <img src="${pessoa.foto}" width="140px" height="140px">
+            </div>
+            <div id="coluna2">
+                <b>CNH:</b> ${pessoa.cnh}<br>
+                <b>Nome:</b> ${pessoa.proprietario}<br>
+                <b>Gravidade:</b> ${pessoa.gravidade}<br>
+                <b>Pontos:</b> ${pessoa.pontos}<br>
+                <b>Data:</b> ${pessoa.data_infracao}<br>
+                <b>Valor:</b> ${pessoa.valor}<br>
+            </div>
+        </div>
+    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
