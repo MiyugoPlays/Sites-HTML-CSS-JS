@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #Reprovado{
+            background-color: #b22222;
+        }
+        #Exame{
+            background-color: #ff8c00;
+        }
+        #Aprovado{
+            background-color: #1e90ff;
+        }
+        #Reprovado, #Exame, #Aprovado{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1">
+        <p>Nome:
+            <input type="text" id="nome" size="20">
+        </p>
+        <p>RGM:
+            <input type="text" id="rgm" size="10">
+        </p>
+        <p>Média:
+            <input type="text" id="media" size="10">
+        </p>
+        <p>
+            <button type="button" id="button1" onclick="gravarDados()">Cadastrar</button>
+            <button type="button" id="button2" onclick="mostrarDados()">Mostrar Dados</button>
+        </p>
+    </form>
+    <div id="tabela"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        var dados = [];
+        var dadosExistem = localStorage.getItem("dados");
+
+        if (dadosExistem) {
+            dados = JSON.parse(dadosExistem);
+        }
+
+        function gravarDados() {
+            var nome = $("#nome").val();
+            var rgm = $("#rgm").val();
+            var media = $("#media").val();
+
+            if (nome && rgm && media) {
+                var novoDado = {
+                    nome: nome,
+                    rgm: rgm,
+                    media: media
+                };
+
+                dados.push(novoDado);
+
+                localStorage.setItem("dados", JSON.stringify(dados));
+
+                alert("Dados gravados");
+
+                $("#nome").val("");
+                $("#rgm").val("");
+                $("#media").val("");
+            } else {
+                alert("Por favor, preencha todos os campos antes de cadastrar.");
+            }
+        }
+
+        function mostrarDados() {
+            $("#tabela").empty();
+
+            var tabelaHTML =
+                "<table>" +
+                    "<tr>" +
+                        "<th>Nome</th>" +
+                        "<th>RGM</th>" +
+                        "<th>Média</th>" +
+                        "<th>Conceito Final</th>" +
+                    "</tr>";
+
+            $.each(dados, function(index, dado) {
+                let conceitofinal = situacaoaluno(dado.media);
+                tabelaHTML +=
+                    "<tr>" +
+                        "<td>" + dado.nome + "</td>" +
+                        "<td>" + dado.rgm + "</td>" +
+                        "<td>" + dado.media + "</td>" +
+                        "<td id='" + conceitofinal + "'>" + conceitofinal + "</td>" +
+                    "</tr>";
+            });
+
+            tabelaHTML += "</table>";
+
+            $("#tabela").append(tabelaHTML);
+        }
+
+        function situacaoaluno(media) {
+            if (media < 1) {
+                return "Reprovado";
+            } else if (media < 6) {
+                return "Exame";
+            } else {
+                return "Aprovado";
+            }
+        }
+    </script>
+</body>
+</html>
